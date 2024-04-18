@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
         btnViewContact.setOnClickListener{
             val intent = Intent(this, ListActivity::class.java)
             startActivity(intent)
-            finish()
         }
     }
 }

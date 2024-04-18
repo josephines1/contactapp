@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "290777087143",
+    "project_id": "contactapp-f8aea",
+    "storage_bucket": "contactapp-f8aea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:290777087143:android:63f1813c36eea001acaf82",
+        "android_client_info": {
+          "package_name": "com.belajar.contactapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdBEh20GQ0h5973S13AunROjCx_yp486Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
