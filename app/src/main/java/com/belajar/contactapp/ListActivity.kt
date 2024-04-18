@@ -33,7 +33,7 @@ class ListActivity : AppCompatActivity() {
         )
 
         val recyclerView: RecyclerView = findViewById(R.id.rv_contacts)
-        recyclerView.adapter = ListAdapter(contacts)
+        recyclerView.adapter = ListAdapter(this, contacts)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
     }
