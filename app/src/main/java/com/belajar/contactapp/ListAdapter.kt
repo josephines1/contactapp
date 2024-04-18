@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import android.content.Context
+import com.belajar.contactapp.model.Contact
 
 class ListAdapter(private val context: Context, val contact: List<Contact>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -33,5 +34,4 @@ class ListAdapter(private val context: Context, val contact: List<Contact>) : Re
             context.startActivity(intent)
         }
     }
-
 }

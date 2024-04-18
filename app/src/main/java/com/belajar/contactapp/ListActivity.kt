@@ -1,14 +1,18 @@
 package com.belajar.contactapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.belajar.contactapp.model.Contact
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ListActivity : AppCompatActivity() {
+    private val listViewModel: ListViewModel by viewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -33,7 +37,13 @@ class ListActivity : AppCompatActivity() {
         )
 
         val recyclerView: RecyclerView = findViewById(R.id.rv_contacts)
-        recyclerView.adapter = ListAdapter(this, contacts)
+
+        listViewModel.getContacts()
+        listViewModel.contacts.observe(this) {
+            Log.d("ListActivity", it.toString())
+
+            recyclerView.adapter = ListAdapter(this, it)
+        }
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
     }
