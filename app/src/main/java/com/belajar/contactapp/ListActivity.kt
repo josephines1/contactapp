@@ -3,6 +3,7 @@ package com.belajar.contactapp
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -23,6 +24,13 @@ class ListActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        // Cek apakah ada pesan yang dikirim melalui Intent
+        val message = intent.getStringExtra("message")
+        if (!message.isNullOrEmpty()) {
+            // Tampilkan pesan menggunakan Toast
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         }
 
         // Data Dummy

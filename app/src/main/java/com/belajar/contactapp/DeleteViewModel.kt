@@ -10,15 +10,21 @@ import com.belajar.contactapp.model.Contact
 import com.belajar.contactapp.utils.Resource
 import kotlinx.coroutines.launch
 
-class ListViewModel(private val repository: ContactRepository) : ViewModel() {
+class DeleteViewModel(private val repository: ContactRepository): ViewModel() {
     private var _contacts = MutableLiveData<List<Contact>>()
     val contacts: LiveData<List<Contact>>
         get() = _contacts
 
-    fun getContacts() {
+    fun delete(contact: Contact) {
         viewModelScope.launch {
-            repository.getContact().collect {
-                _contacts.value = it
+            repository.delete(contact).collect {
+                when (it) {
+                    is Resource.Error -> {}
+                    Resource.Loading -> {}
+                    is Resource.Success -> {
+                        Log.d("DeleteViewModel: delete", "Success")
+                    }
+                }
             }
         }
     }
