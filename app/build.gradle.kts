@@ -47,6 +47,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.room.ktx)
     implementation(libs.firebase.firestore)
+    implementation(libs.firebase.storage)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -58,4 +59,7 @@ dependencies {
     implementation(libs.koin.core)
     implementation(libs.koin.core.coroutines)
     implementation(libs.koin.android)
+
+    // Piccaso
+    implementation("com.squareup.picasso:picasso:2.71828")
 }
