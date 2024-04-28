@@ -31,7 +31,7 @@ class ContactRepository(
         }
     }
 
-    suspend fun update(contact: Contact): Flow<Resource<Unit>> = flow {
+    suspend fun update(contact: Contact, imageUrl: String?): Flow<Resource<Unit>> = flow {
         emit(Resource.Loading)
         try {
             val ref = firestoreDb.collection("contacts")
@@ -39,7 +39,8 @@ class ContactRepository(
                 mapOf(
                     "name" to contact.name,
                     "address" to contact.address,
-                    "number" to contact.number
+                    "number" to contact.number,
+                    "imageUrl" to imageUrl
                 )
             )
             emit(Resource.Success(Unit))
