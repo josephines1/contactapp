@@ -1,7 +1,9 @@
 package com.belajar.contactapp
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -10,12 +12,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.belajar.contactapp.model.Contact
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity() {
 
     private val deleteViewModel: DeleteViewModel by viewModel()
+    private lateinit var storageReference: StorageReference
+    private lateinit var imageUri: Uri
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -69,6 +76,9 @@ class DetailActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // Set up Firebase Cloud Storage
+        storageReference = FirebaseStorage.getInstance().reference
+
         // Konfirmasi sebelum menghapus
         fun showDeleteConfirmationDialog() {
             val builder = AlertDialog.Builder(this)
@@ -77,6 +87,16 @@ class DetailActivity : AppCompatActivity() {
                 setPositiveButton("Yes") { dialog, which ->
                     val contact: Contact? = intent.getParcelableExtra("CONTACT")
                     contact?.let { // Memeriksa apakah contact tidak null
+
+                        if(contact.imageUrl != null) {
+                            val imageRef = storageReference.child(getFileNameFromUrl(contact.imageUrl))
+
+                            imageRef.delete().addOnSuccessListener {
+                                Log.i("UpdateActivity", "Success deleting image")
+                            }.addOnFailureListener { e ->
+                                Log.e("UpdateActivity", "Error deleting image", e)
+                            }
+                        }
 
                         // hapus contact
                         deleteViewModel.delete(it)
@@ -103,5 +123,11 @@ class DetailActivity : AppCompatActivity() {
             btnDelete.isSelected != btnDelete.isSelected
             showDeleteConfirmationDialog()
         }
+    }
+
+    private fun getFileNameFromUrl(url: String?): String {
+        val uri = Uri.parse(url)
+        val segments = uri.pathSegments
+        return segments.lastOrNull()?.split("?")?.first() ?: ""
     }
 }

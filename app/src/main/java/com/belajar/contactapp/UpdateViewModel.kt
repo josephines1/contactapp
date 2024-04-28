@@ -16,9 +16,9 @@ class UpdateViewModel(private val repository: ContactRepository) : ViewModel() {
     val contactUpdated: LiveData<Boolean>
         get() = _contactUpdated
 
-    fun updateContact(contact: Contact) {
+    fun updateContact(contact: Contact, imageUrl: String?) {
         viewModelScope.launch {
-            repository.update(contact).collect {
+            repository.update(contact, imageUrl).collect {
                 when (it) {
                     is Resource.Error -> {
                         _contactUpdated.value = false
