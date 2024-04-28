@@ -2,6 +2,7 @@ package com.belajar.contactapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.belajar.contactapp.model.Contact
+import com.squareup.picasso.Picasso
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity() {
@@ -30,22 +32,38 @@ class DetailActivity : AppCompatActivity() {
         val name = contact?.name
         val address = contact?.address
         val number = contact?.number
+        val imageUrl = contact?.imageUrl
 
         // Panggil komponen-komponen di layout
         val tvName = findViewById<TextView>(R.id.tv_detail_name)
         val tvAddress = findViewById<TextView>(R.id.tv_detail_address)
         val tvNumber = findViewById<TextView>(R.id.tv_detail_number)
+        val ivImage = findViewById<ImageView>(R.id.iv_detail_image)
 
         // Definisikan text pada setiap komponen
         tvName.text = name
         tvAddress.text = address
         tvNumber.text = number
+        Picasso.get()
+            .load(imageUrl)
+            .into(ivImage)
+
+        if(imageUrl == null) {
+            ivImage.setImageResource(R.drawable.account_circle_24)
+        }
+
+        val btnBack = findViewById<TextView>(R.id.btn_detail_back)
+
+        btnBack.setOnClickListener{
+            finish()
+        }
 
         // Panggil komponen button Update di layout
         val btnUpdate = findViewById<TextView>(R.id.btn_detail_update)
 
         // Arahkan menuju halaman update data
         btnUpdate.setOnClickListener{
+            btnUpdate.isSelected != btnUpdate.isSelected
             val intent = Intent(this, UpdateActivity::class.java)
             intent.putExtra("CONTACT", contact)
             startActivity(intent)
@@ -82,6 +100,7 @@ class DetailActivity : AppCompatActivity() {
 
         // Munculkan konfirmasi
         btnDelete.setOnClickListener {
+            btnDelete.isSelected != btnDelete.isSelected
             showDeleteConfirmationDialog()
         }
     }

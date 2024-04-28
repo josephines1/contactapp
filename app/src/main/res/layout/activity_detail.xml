@@ -7,54 +7,149 @@
     android:layout_height="match_parent"
     tools:context=".DetailActivity">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_img"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        app:cardCornerRadius="125dp"
+        android:layout_gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" >
+
+        <ImageView
+            android:id="@+id/iv_detail_image"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:scaleType="centerCrop"
+            android:background="@drawable/circle_shape"
+            android:src="@drawable/account_circle_24"
+            />
+
+    </androidx.cardview.widget.CardView>
+
     <TextView
         android:id="@+id/tv_detail_name"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:textStyle="bold"
+        android:textAlignment="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:paddingHorizontal="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/tv_detail_address"/>
-
-    <TextView
-        android:id="@+id/tv_detail_address"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/tv_detail_number"/>
-
-    <TextView
-        android:id="@+id/tv_detail_number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_detail_address"/>
+        app:layout_constraintTop_toBottomOf="@id/cv_img"
+        android:text="Name Here"/>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/ll_address"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="24dp"
+        android:orientation="vertical"
+        android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_detail_number">
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_name" >
+
+        <TextView
+            android:id="@+id/tv_detail_address_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:paddingHorizontal="16dp"
+            android:text="Address"
+            />
+
+        <TextView
+            android:id="@+id/tv_detail_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:paddingHorizontal="16dp"
+            android:text="Lorem ipsum"
+        />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_address">
+
+        <TextView
+            android:id="@+id/tv_detail_number_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:paddingHorizontal="16dp"
+            android:text="Phone Number"
+            />
+
+        <TextView
+            android:id="@+id/tv_detail_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:paddingHorizontal="16dp"
+            android:layout_marginVertical="4dp"
+            android:text="12345678"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="40dp"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_number">
 
         <Button
-            android:id="@+id/btn_detail_update"
-            android:layout_width="wrap_content"
+            android:id="@+id/btn_detail_back"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:text="Update" />
+            android:text="Back"
+            android:layout_marginBottom="12dp"
+            android:backgroundTint="@color/button_primary_background_color"
+            android:textColor="@color/button_primary_text_color"/>
 
-        <Button
-            android:id="@+id/btn_detail_delete"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:text="Delete" />
+            android:orientation="horizontal"
+            android:weightSum="1.0">
+
+            <Button
+                android:id="@+id/btn_detail_update"
+                android:layout_width="0dip"
+                android:layout_weight=".5"
+                android:layout_height="wrap_content"
+                android:text="Update"
+                android:backgroundTint="@color/button_warning_background_color"
+                android:textColor="@color/button_warning_text_color"/>
+
+            <Button
+                android:id="@+id/btn_detail_delete"
+                android:layout_width="0dip"
+                android:layout_weight=".5"
+                android:layout_height="wrap_content"
+                android:text="Delete"
+                android:layout_marginStart="4dp"
+                android:backgroundTint="@color/button_danger_background_color"
+                android:textColor="@color/button_danger_text_color" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
