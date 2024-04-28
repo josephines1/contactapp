@@ -3,7 +3,6 @@ package com.belajar.contactapp
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -15,7 +14,6 @@ import com.belajar.contactapp.model.Contact
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.io.InputStream
 import java.util.UUID
 
 class AddActivity : AppCompatActivity() {

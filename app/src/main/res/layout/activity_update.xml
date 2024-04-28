@@ -61,6 +61,8 @@
         android:text="Update"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tf_update_number" />
+        app:layout_constraintTop_toBottomOf="@+id/tf_update_number"
+        android:backgroundTint="@color/button_warning_background_color"
+        android:textColor="@color/button_warning_text_color" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
